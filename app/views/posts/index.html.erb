@@ -1,22 +1,23 @@
-  <div class="banner">
-    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://hpmedia.bloomsbury.com/rep/g/page-background-shell%20-%202.png);">
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://hpmedia.bloomsbury.com/rep/g/page-background-shell%20-%202.png);">
     <div class="container">
       <h1 class = "text-center">The Cauldron</h1>
     </div>
   </div>
 
   <div class="page-content">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="https://pm1.narvii.com/6305/741eef62e968b18bb466e9811f513776d9fddefe_hq.jpg" alt="Card image cap">
+    <div class="container-fluid px-5">
+      <div class="row my-5">
+        <% 10.times do %>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="card mt-5 w-100">
+              <img class="card-img-top" src="https://pm1.narvii.com/6305/741eef62e968b18bb466e9811f513776d9fddefe_hq.jpg" alt="Card image cap">
             <div class="card-body">
               <p class="card-text">Creature Name</p>
             </div>
           </div>
         </div>
+        <% end %>
+        </div>
       </div>
-    </div>
   </div>
-</div>
+
