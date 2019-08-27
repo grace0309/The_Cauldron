@@ -1,5 +1,6 @@
 .card{
   color: #000000;
+  min-height:200px;
 }
 .card-product {
   overflow: hidden;
@@ -9,6 +10,7 @@
   display: flex;
   align-items: center;
   width: 760px;
+  color: #000000;
 }
 
 .card-product img {

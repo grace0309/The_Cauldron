@@ -11,7 +11,7 @@
         <h6>Content : <%= @post.description %></h6>
         <h6>Price : <%= @post.price %></h6>
         <h6><%= "Owned by: #{@post.user.email}"%></h6>
-      <%= link_to "Rent now", "#", class: "btn-flat" %>
+      <%= link_to "Rent now", new_post_booking_path(@post), class: "btn-flat" %>
     </div>
     </div>
   </div>
