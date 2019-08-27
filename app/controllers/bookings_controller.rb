@@ -21,14 +21,12 @@ class BookingsController < ApplicationController
   def update
     authorize @booking
     @post.update(post_params)
-    @posts = Post.all
     redirect_to dashboard_path
   end
 
   def destroy
     authorize @booking
     @post.destroy
-    @posts = Post.all
     redirect_to dashboard_path
   end
 
