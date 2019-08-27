@@ -1,28 +1,31 @@
-<%=simple_form_for (@post) do |f| %>
-
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-   <%= f.input :title, label: 'Title', placeholder: "Wonderful wand" %>
+<div class="container">
+  <div class="row w-100 justify-content-center">
+    <img class="border-img" src="../assets/border.jpg">
+    <div class="text-input">
+    <div class="col-xs-4">
+      <%=simple_form_for (@post) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <div class="form-inputs">
+        <%= f.input :title, label: 'Title', placeholder: "Wonderful wand" %>
+      </div>
+      <div class="form-inputs">
+        <%= f.input :description, label: 'Description', placeholder: "Use it to do wonderful things" %>
+      </div>
+      <div class="form-inputs">
+        <%= f.input :price, label: 'Price in SGD', placeholder: "100" %>
+      </div>
+      <div class="form-inputs">
+        <%= f.association :category, collection: Category.all,label_method: :category, value_method: :id %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit,  class: "btn btn-primary" %>
+      </div>
+      <% end %>
+      <p>
+        <%= button_to("SIGN OUT", destroy_user_session_path, method: :delete) %>
+      </p>
+    </div>
   </div>
-
-  <div class="form-inputs">
-   <%= f.input :description, label: 'Description', placeholder: "Use it to do wonderful things" %>
-  </div>
-
-  <div class="form-inputs">
-   <%= f.input :price, label: 'Price in SGD', placeholder: "100" %>
-  </div>
-
-  <div class="form-inputs">
-    <%= f.association :category, collection: Category.all,label_method: :category, value_method: :id %>
-  </div>
-
-  <div class="form-actions">
-   <%= f.button :submit,  class: "btn btn-primary" %>
-  </div>
-
-<% end %>
-
-<p><%= button_to("SIGN OUT", destroy_user_session_path, method: :delete) %></p>
+</div>
+</div>

@@ -13,11 +13,15 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.category_id = params[:post][:category_id]
     @post.user_id = current_user.id
-    @post.category_id = params[:category]
     @post.save
-
-    redirect_to post_path(@post)
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      render "new"
+    end
+    @Posts = Post.all
   end
 
   def edit
