@@ -1,5 +1,5 @@
 import "bootstrap";
-console.log('HELLOOOOO')
+
 const input = document.querySelector('.form-inputs');
 console.log(input)
 input.addEventListener('change', (event) => {

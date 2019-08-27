@@ -1,7 +1,7 @@
 <h2><%= @user.email %></h2>
 <h2>Bookings</h2>
 <ul><% @bookings.each do |booking| %>
-    <li><%= booking.post.title %></li>
+    <li><%= booking.post.title %> <%= link_to "Edit", edit_booking_path(booking) %> <%= link_to "Delete", booking_path(booking) , method: :delete  %></li>
     <% end %>
 </ul>
 <h2>Posts</h2>
