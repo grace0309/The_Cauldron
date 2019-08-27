@@ -3,12 +3,12 @@
 }
 
 .book-img {
-  width: 345px;
-  height: 512px;
+  width: 200px;
+  height: 250px;
   z-index: 1;
   margin-top: 50px;
   position: absolute;
-  margin-left: 70px;
+  margin-left: 146px;
 }
 .text-input {
   position: absolute;
@@ -17,10 +17,16 @@
 }
 
 .text-details {
-  position: absolute;
   z-index: 1;
-  margin-left: 210px;
-  margin-top: 197px;
-  color: $black;
+  margin-top: 325px;
+  margin-left: 122px;
+  position: absolute;
+  color: black;
+}
+.text-reviews {
+  margin-top: 37px;
+  margin-left: 498px;
+  position: absolute;
+  color: black;
 }
 

@@ -1,31 +1,36 @@
-<div class="container d-flex justify-content-center mt-5 ">
-      <div class ="ml-1" >
-        <img class="book-img" src="../assets/book1.jpg" />
-      <img class="book" src="../assets/book.jpg" alt="">
-      </div>
-      <div class="text-details">
-        <div class="col-xs-4">
-          <h3 class="text-center">
-            <%= "#{@post.title}" %>
-          </h3>
-          <h6>Category :
-            <%= @post.category.category %>
-          </h6>
-          <h6>Content :
-            <%= @post.description %>
-          </h6>
-          <h6>Price :
-            <%= @post.price %>
-          </h6>
-          <h6>
-            <%= "Owned by: #{@post.user.name}"%>
-          </h6>
-          <%= link_to "Rent now", new_post_booking_path(@post), class: "btn-flat" %>
-          <h6>
-            <% @post.reviews.each do |review| %>
-              <li><%= review.content %></li>
-            <% end %>
-          </h6>
-        </div>
-      </div>
+<div class="text-reviews">
+  <h6>
+    <% @post.reviews.each do |review| %>
+      <p>
+        <%= review.content %>
+      </p>
+      <p>
+         - <%= review.user.name %>
+      </p>
+    <% end %>
+  </h6>
 </div>
+
+<div class="text-details">
+  <h3 class="text-center">
+    <%= "#{@post.title}" %>
+  </h3>
+  <h6>Category :
+    <%= @post.category.category %>
+  </h6>
+  <h6>Content :
+    <%= @post.description %>
+  </h6>
+  <h6>Price :
+    <%= @post.price %>
+  </h6>
+  <h6>
+    <%= "Owned by: #{@post.user.name}"%>
+  </h6>
+  <%= link_to "Rent now", new_post_booking_path(@post), class: "btn-flat text-center" %>
+</div>
+<div class="ml-1">
+  <img class="book-img" src="../assets/book1.jpg" />
+  <img class="book" src="../assets/book.jpg" alt="">
+</div>
+
