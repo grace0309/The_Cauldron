@@ -12,15 +12,19 @@
 .text-details {
   position: absolute;
   top: 339px;
-  left: 559px;
+  left: 725px;
   text-align: left;
 }
 
 .book-img {
+  width: 345px;
+  height: 512px;
   position: absolute;
-  width: 346px;
-  height: 403px;
-  bottom: 89px;
-  left: 128px;
+  top: 92px;
+  left: 154px;
+}
+
+.book {
+  position: relative;
 }
 

@@ -30,11 +30,13 @@ class PostsController < ApplicationController
   def update
     @post.update(post_params)
     @post = Post.all
+    redirect_to dashboard_path
   end
 
   def destroy
     @post.destroy
     @posts = Post.all
+    redirect_to dashboard_path
   end
 
 
