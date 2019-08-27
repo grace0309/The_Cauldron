@@ -18,12 +18,12 @@ puts 'Finished!'
 
 puts 'Creating users...'
 response = RestClient.get 'http://hp-api.herokuapp.com/api/characters'
-result = JSON.parse(response)[0...10]
+result = JSON.parse(response)[0...5]
 result.each do |character|
   if character['species'] == 'human'
     name = character['name']
     email = "#{name.downcase.delete(' ')}@hogwarts.com"
-    User.create(email: email, password: '123456')
+    User.create(name: name, email: email, password: '123456')
   end
 end
 puts 'Finished!'
@@ -51,7 +51,7 @@ result.each do |character|
     desc = character['species'].capitalize
     user = User.all.sample
     category = Category.find_by category: 'Creatures'
-    price = rand(60...200)
+    price = rand(30...100)
     Post.create(title: name, description: desc, price: price, user: user, category: category)
   end
 end
