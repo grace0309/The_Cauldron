@@ -11,6 +11,7 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.post = @post
     @booking.user_id = current_user.id
+    ##########################
     if @booking.save
       redirect_to dashboard_path
     else
