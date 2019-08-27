@@ -1,22 +1,24 @@
-<%=simple_form_for @booking do |f| %>
-
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-   <%= f.input :start_date, as: :date, label: 'Start Date', placeholder: "start date" , html5: true%>
+<div class="container">
+  <h1 class="text-center">Create a booking</h1>
+  <div class="row justify-content-center">
+    <%=simple_form_for [@post, @booking] do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="form-inputs">
+      <%= f.input :start_date, as: :date, label: 'Start Date', placeholder: "start date" , html5: true, :input_html => {:style=> 'width: 500px'}%>
+    </div>
+    <div class="form-inputs">
+      <%= f.input :end_date, as: :date, label: 'End Date', placeholder: "end date" , html5: true%>
+    </div>
+    <div class="d-flex justify-content-between">
+      <h2 id="total-price" data-price="<%= @booking.post.price%>">
+        $
+      </h2>
+      <div class="form-actions">
+        <%= f.button :submit,  class: "btn btn-primary" %>
+      </div>
+    </div>
+    <% end %>
+    <img src="../../../assets/form_booking.jpg" alt="">
   </div>
-
-  <div class="form-inputs">
-   <%= f.input :end_date, as: :date, label: 'End Date', placeholder: "end date" , html5: true%>
-  </div>
-
-  <h2>
-   <%= @booking.total_price %>
-  </h2>
-
-  <div class="form-actions">
-   <%= f.button :submit,  class: "btn btn-primary" %>
-  </div>
-
-<% end %>
+</div>
