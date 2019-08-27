@@ -1,0 +1,22 @@
+<%=simple_form_for @booking do |f| %>
+
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+   <%= f.input :start_date, as: :date, label: 'Start Date', placeholder: "start date" , html5: true%>
+  </div>
+
+  <div class="form-inputs">
+   <%= f.input :end_date, as: :date, label: 'End Date', placeholder: "end date" , html5: true%>
+  </div>
+
+  <h2>
+   <%= @booking.total_price %>
+  </h2>
+
+  <div class="form-actions">
+   <%= f.button :submit,  class: "btn btn-primary" %>
+  </div>
+
+<% end %>

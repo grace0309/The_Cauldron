@@ -1,13 +1,17 @@
-<h2><%= @user.email %></h2>
-<h2>Bookings</h2>
-<ul><% @bookings.each do |booking| %>
-    <li><%= booking.post.title %></li>
+<h1><%= "Hello, #{@user.name}!"%></h1>
+
+<div class='dashboard'>
+  <h2>Bookings</h2>
+  <ul><% @bookings.each do |booking| %>
+      <li class='booking'><%= booking.post.title %> <%= link_to "Edit", edit_booking_path(booking) %> <%= link_to "Delete", booking_path(booking) , method: :delete  %></li>
+      <% end %>
+  </ul>
+
+  <h2>Posts</h2>
+    <% @posts.each do |post|  %>
+    <li class='post'><%= link_to post.title, post_path(post) %> <%= link_to "Edit", edit_post_path(post) %> <%= link_to "Delete", post_path(post) , method: :delete  %></li>
     <% end %>
-</ul>
-<h2>Posts</h2>
+</div>
 
-  <% @posts.each do |post|  %>
-  <li><%= link_to post.title, post_path(post) %> <%= link_to "Edit", edit_post_path(post) %> <%= link_to "Delete", post_path(post) , method: :delete  %></li>
-  <% end %>
-
+<p class = "alert"><%= "You are signed in as #{@user.email}" %></p>
 

@@ -1,5 +1,4 @@
 import "bootstrap";
-
 console.log('HELLOOOOO')
 const inputs = document.querySelectorAll('.form-inputs');
 inputs.forEach((input)=>{
