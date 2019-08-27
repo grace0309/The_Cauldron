@@ -48,4 +48,13 @@
   margin: 44px;
 }
 
+.card-product .card-product-texts {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 500px;
+}
 
+.card-product .item {
+  padding: 10px;
+}
