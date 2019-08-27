@@ -18,9 +18,14 @@
             <%= @post.price %>
           </h6>
           <h6>
-            <%= "Owned by: #{@post.user.email}"%>
+            <%= "Owned by: #{@post.user.name}"%>
           </h6>
           <%= link_to "Rent now", new_post_booking_path(@post), class: "btn-flat" %>
+          <h6>
+            <% @post.reviews.each do |review| %>
+              <li><%= review.content %></li>
+            <% end %>
+          </h6>
         </div>
       </div>
 </div>
