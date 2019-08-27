@@ -1,7 +1,21 @@
 .dashboard {
   display: flex;
-  flex-direction: column;
-  background-color: yellow;
+  flex-direction: row;
+  justify-content: space-evenly;
   height: 375px;
+  padding: 30px;
+}
+
+.dashboard-list{
+  display: flex;
+  align-items: center;
+  widows: 500px;
+  margin-bottom: 8px;
+  background: white;
+  opacity: 0.8;
+  padding: 8px 16px;
+  border: 1px solid rgb(235,235,235);
   justify-content: space-between;
+  width: 400px;
+  border-radius: 10px;
 }
