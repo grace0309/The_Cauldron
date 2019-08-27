@@ -1,8 +1,15 @@
 .border-img {
   width: 650px;
-  position: relative;
 }
 
+.book-img {
+  width: 345px;
+  height: 512px;
+  z-index: 1;
+  margin-top: 50px;
+  position: absolute;
+  margin-left: 70px;
+}
 .text-input {
   position: absolute;
   top: 235px;
@@ -11,20 +18,9 @@
 
 .text-details {
   position: absolute;
-  top: 339px;
-  left: 725px;
-  text-align: left;
-}
-
-.book-img {
-  width: 345px;
-  height: 512px;
-  position: absolute;
-  top: 92px;
-  left: 154px;
-}
-
-.book {
-  position: relative;
+  z-index: 1;
+  margin-left: 210px;
+  margin-top: 197px;
+  color: $black;
 }
 
