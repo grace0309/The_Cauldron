@@ -26,18 +26,22 @@ class PostsController < ApplicationController
     else
       render :new
     end
+    @posts = Post.all
   end
 
   def edit
+    authorize @post
   end
 
   def update
+    authorize @post
     @post.update(post_params)
-    @post = Post.all
+    @posts = Post.all
     redirect_to dashboard_path
   end
 
   def destroy
+    authorize @post
     @post.destroy
     @posts = Post.all
     redirect_to dashboard_path
