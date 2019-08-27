@@ -1,0 +1,15 @@
+<h2><%= @user.email %></h2>
+<h2>Bookings</h2>
+<ul><% @bookings.each do |booking| %>
+    <li><%= booking.post.title %></li>
+    <% end %>
+</ul>
+<h2>Posts</h2>
+
+<ul>
+  <% @posts.each do |post|  %>
+  <li><%= post.title %></li>
+  <% end %>
+</ul>
+
+
