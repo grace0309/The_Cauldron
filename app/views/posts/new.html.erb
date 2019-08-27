@@ -3,6 +3,7 @@
     <img class="border-img" src="../assets/border.jpg">
     <div class="text-input">
     <div class="col-xs-4">
+      <h2 class="text-white">Add a new post</h2>
       <%=simple_form_for (@post) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
