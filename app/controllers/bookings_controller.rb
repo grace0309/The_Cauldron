@@ -9,6 +9,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.post = @post
     @booking.user_id = current_user.id
+    ##########################
     if @booking.save
       redirect_to dashboard_path
     else
