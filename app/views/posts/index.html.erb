@@ -1,17 +1,17 @@
   <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://hpmedia.bloomsbury.com/rep/g/page-background-shell%20-%202.png);">
-    <div class="container">
-      <h1 class = "text-center">The Cauldron</h1>
+    <div class="container justify-content-center">
+      <a href="https://fontmeme.com/harry-potter-font/"><img src="https://fontmeme.com/permalink/190827/8c1e344d168f13ae872c3ce44d9b2750.png"class="img-responsive" alt="Responsive image" style="padding-top: 120px";></a>
     </div>
   </div>
 
   <div class="page-content">
     <h1 class = "text-center mt-5">Find your magic today</h1>
-    <div class="container-fluid px-5">
-      <div class="row my-3">
+    <div class="container-fluid">
+      <div class="row pt-2">
         <% @posts.each do |post| %>
-        <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
           <%= link_to post_path(post) do %>
-          <div class="card mt-5 w-100">
+          <div class="card h-100">
               <img class="card-img-top" src="https://pm1.narvii.com/6305/741eef62e968b18bb466e9811f513776d9fddefe_hq.jpg" alt="Card image cap">
             <div class="card-body d-flex justify-content-between">
               <div>
