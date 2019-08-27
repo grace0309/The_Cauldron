@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [ :show, :destroy, :edit, :update]
+  before_action :set_post, only: [:show, :destroy, :edit, :update]
   def index
     @posts = Post.all
   end
@@ -8,14 +8,16 @@ class PostsController < ApplicationController
   end
 
   def new
-    @posts = Post.new
+    @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    #to be found in the file
-    @post.category_id = params
+    @post.category_id = params[:category]
+    @post.save
+
+    redirect_to post_path(@post)
   end
 
   def edit
