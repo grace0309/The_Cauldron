@@ -1,15 +1,19 @@
 <div class="container d-flex justify-content-center mt-5 ">
-  <div class="card-product">
-    <img src="https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" />
-    <div class="card-product-infos">
-      <div class="card-product-texts">
-        <h3 class="item"><%= "#{@post.category.category}: #{@post.title}" %></h3>
-        <h6 class="item"><%= @post.description %></h6>
-        <h6 class="item"><%= @post.price %></h6>
-        <h6 class="item"><%= "Owned by: #{@post.user.email}"%></h6>
+  <div class="row">
+  <img class= "book" src="../assets/book.jpg" alt="">
+  <div class="book-img">
+    <img class="book-img" src="../assets/book1.jpg" />
+  </div>
+  <div class="text-details">
+  <div class="col-xs-4">
+        <h3 class="text-center"><%= "#{@post.title}" %></h3>
+        <h6>Category : <%= @post.category.category %></h6>
+        <h6>Content : <%= @post.description %></h6>
+        <h6>Price : <%= @post.price %></h6>
+        <h6><%= "Owned by: #{@post.user.email}"%></h6>
       <%= link_to "Rent now", "#", class: "btn-flat" %>
     </div>
     </div>
   </div>
-</div>
+</div>d
 
