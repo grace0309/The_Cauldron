@@ -2,7 +2,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :destroy, :edit, :update]
 
   def index
-    @posts = Post.all
+    if params[:query].present?
+      @posts = Post.search(params[:query])
+    else
+      @posts = Post.all
+    end
   end
 
   def show
@@ -13,6 +17,7 @@ class PostsController < ApplicationController
     @post = Post.new
     authorize @post
   end
+
   def create
     @post = Post.new(post_params)
     authorize @post
