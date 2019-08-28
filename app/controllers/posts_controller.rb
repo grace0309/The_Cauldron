@@ -2,6 +2,14 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :destroy, :edit, :update]
 
   def index
+    @posts = Post.all
+    @mapped_posts = Post.geocoded
+    # @posts = Post.all
+    @markers = @mapped_posts.map do |post|
+      {
+        lat: post.latitude,
+        lng: post.longitude
+      }
     if params[:query].present?
       @posts = Post.search(params[:query])
     else
