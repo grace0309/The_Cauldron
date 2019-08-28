@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :category
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
   has_many :reviews, through: :bookings
   include PgSearch::Model
   pg_search_scope :search,

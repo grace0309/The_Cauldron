@@ -1,7 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :post
   belongs_to :user
-  has_one :review
+  has_one :review, dependent: :destroy
 
   validates :start_date, presence: true
   before_save :set_total_price
