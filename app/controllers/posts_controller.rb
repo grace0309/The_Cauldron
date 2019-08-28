@@ -10,6 +10,10 @@ class PostsController < ApplicationController
         lat: post.latitude,
         lng: post.longitude
       }
+    if params[:query].present?
+      @posts = Post.search(params[:query])
+    else
+      @posts = Post.all
     end
   end
 
@@ -21,6 +25,7 @@ class PostsController < ApplicationController
     @post = Post.new
     authorize @post
   end
+
   def create
     @post = Post.new(post_params)
     authorize @post
