@@ -8,16 +8,16 @@ x<div class="container mt-5 h-100">
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
       <div class="form-inputs">
-        <%= f.input :title, label: 'Title', placeholder: "Wonderful wand" %>
+        <%= f.input :title, label: 'Title', placeholder: "Give me a good name" %>
       </div>
       <div class="form-inputs">
-        <%= f.input :description, label: 'Description', placeholder: "Use it to do wonderful things" %>
+        <%= f.input :description, label: 'Description', placeholder: "Better make me wonderous" %>
       </div>
       <div class="form-inputs">
-        <%= f.input :price, label: 'Price in SGD', placeholder: "100" %>
+        <%= f.input :price, label: 'Price in SGD', placeholder: "I am worth more" %>
       </div>
       <div class="form-inputs">
-        <%= f.association :category, collection: Category.all,label_method: :category, value_method: :id %>
+        <%= f.association :category,collection: Category.all,label_method: :category, value_method: :id %>
       </div>
       <div class="form-actions">
         <%= f.button :submit,  class: "btn btn-primary" %>

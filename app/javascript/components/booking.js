@@ -4,6 +4,7 @@ import flatpickr from "flatpickr";
 require("flatpickr/dist/themes/dark.css");
 
 const toggleDateInputs = function() {
+  if (document.querySelector('.widget-content')) {
   const unavailableDates = JSON.parse(document.querySelector('.widget-content').dataset.unavailable)
   flatpickr('#booking_start_date', {
     minDate: 'today',
@@ -21,6 +22,7 @@ const toggleDateInputs = function() {
       document.querySelector('#total-price').innerText = "$" + totalPrice
     }
    });
+};
 };
 
 

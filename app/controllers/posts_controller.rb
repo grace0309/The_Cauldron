@@ -10,6 +10,7 @@ class PostsController < ApplicationController
         lat: post.latitude,
         lng: post.longitude
       }
+    end
     if params[:query].present?
       @posts = Post.search(params[:query])
     else
