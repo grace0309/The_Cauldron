@@ -1,10 +1,6 @@
 # This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup)
+Review.destroy_all
 Booking.destroy_all
 Post.destroy_all
 Category.destroy_all
@@ -31,44 +27,88 @@ puts 'Finished!'
 
 puts 'Creating posts...'
 
+
 puts 'Creating spells...'
+spells = Category.find_by category: 'Spells'
 response = RestClient.get 'https://www.potterapi.com/v1/spells?key=$2a$10$64FSHysMBSjgcbf/TFJN9OFIbsWkBfgye2rU8nEpM7LJB4GPgZmg6'
-result = JSON.parse(response)[0...10]
+result = JSON.parse(response)[0...5]
 result.each do |spell|
   title = spell['spell']
   desc = spell['effect'].capitalize
   price = rand(10...50)
   user = User.all.sample
-  category = Category.find_by category: 'Spells'
-  Post.create(title: title, description: desc, price: price, user: user, category: category)
+  photo = "https://source.unsplash.com/600x400/?spell,#{title}"
+  Post.create(title: title, description: desc, price: price, user: user, category: spells, photo: photo)
 end
 
 puts 'Creating creatures...'
+creatures = Category.find_by category: 'Creatures'
 response = RestClient.get 'https://www.potterapi.com/v1/characters/?key=$2a$10$64FSHysMBSjgcbf/TFJN9OFIbsWkBfgye2rU8nEpM7LJB4GPgZmg6'
-result = JSON.parse(response)
+result = JSON.parse(response)[0...100]
 result.each do |character|
   if character['species'] != 'human' && character['species'] != 'part-human'
     name = character['name']
     desc = character['species'].capitalize
     user = User.all.sample
-    category = Category.find_by category: 'Creatures'
     price = rand(30...100)
-    Post.create(title: name, description: desc, price: price, user: user, category: category)
+    photo = "https://source.unsplash.com/600x400/?creature,#{name}"
+    Post.create(title: name, description: desc, price: price, user: user, category: creatures, photo: photo)
   end
 end
 
-# puts 'Creating wand...'
-# response = RestClient.get 'https://www.potterapi.com/v1/characters/?key=$2a$10$64FSHysMBSjgcbf/TFJN9OFIbsWkBfgye2rU8nEpM7LJB4GPgZmg6'
-# result = JSON.parse(response)
-# result.each do |character|
-#   if character['species'] != 'human' && character['species'] != 'part-human'
-#     name = character['name']
-#     desc = character['species'].capitalize
-#     user = User.all.sample
-#     category = Category.find_by category: 'Creatures'
-#     price = rand(60...200)
-#     Post.create(title: name, description: desc, price: price, user: user, category: category)
-#   end
-# end
+puts 'Creating potions...'
+potions = Category.find_by category: 'Potions'
+5.times do
+  user = User.all.sample
+  post = Post.new(
+    title: Faker::Coffee.blend_name,
+    description: Faker::Coffee.notes,
+    price: rand(10...50),
+    user: user,
+    category: potions
+  )
+  post.photo = "https://source.unsplash.com/600x400/?potion,#{post.title}"
+  post.save!
+end
+
+puts 'Creating wands...'
+wands = Category.find_by category: 'Wands'
+5.times do
+  user = User.all.sample
+  post = Post.new(
+    title: Faker::Games::Pokemon.move,
+    description: Faker::Games::Pokemon.location,
+    price: rand(10...50),
+    user: user,
+    category: potions,
+  )
+  post.photo = "https://source.unsplash.com/600x400/?wand,#{post.title}"
+  post.save
+end
+puts 'Finished!'
+
+puts 'Creating bookings...'
+20.times do
+  user = User.all.sample
+  post = Post.all.sample
+  review = Booking.create(
+    user: user,
+    post: post,
+    start_date: Date.today + rand(5..10),
+    end_date: Date.today + rand(10..20),
+    )
+end
+
+puts 'Creating reviews...'
+20.times do
+  user = User.all.sample
+  booking = Booking.all.sample
+  review = Review.create(
+    user: user,
+    booking: booking,
+    content: Faker::Quote.famous_last_words
+    )
+end
 
 puts 'Finished!'
+

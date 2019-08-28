@@ -5,10 +5,13 @@ Rails.application.routes.draw do
 
   resources :posts  do
     resources :bookings, only: [ :create, :new]
-    resources :reviews, only: [ :create, :new]
    end
 
-  resources :bookings, only: [ :edit, :update, :destroy]
+  resources :bookings do
+    resources :reviews, only: [ :create, :new]
+  end
+
+  resources :bookings, only: [ :show, :edit, :update, :destroy]
   resources :reviews, only: [ :edit, :update, :destroy]
 
   get "/dashboard", to: "pages#dashboard", as: :dashboard

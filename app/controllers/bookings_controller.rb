@@ -5,6 +5,11 @@ class BookingsController < ApplicationController
     @post = Post.find(params[:post_id])
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+    authorize @booking
+  end
+
   def create
     @post = Post.find(params[:post_id])
     @booking = Booking.new(booking_params)
