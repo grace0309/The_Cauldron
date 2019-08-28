@@ -12,7 +12,10 @@ class BookingsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
+    range = (params[:booking][:start_date]).split("to")
     @booking = Booking.new(booking_params)
+    @booking.start_date = range[0]
+    @booking.end_date = range[1]
     authorize @booking
     @booking.post = @post
     @booking.user_id = current_user.id
