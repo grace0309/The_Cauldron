@@ -13,7 +13,6 @@ class PostsController < ApplicationController
     @post = Post.new
     authorize @post
   end
-
   def create
     @post = Post.new(post_params)
     authorize @post
