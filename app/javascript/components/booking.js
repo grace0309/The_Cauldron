@@ -15,11 +15,13 @@ const toggleDateInputs = function() {
       const splited = range.split('to');
       const startDate = Date.parse(splited[0]);
       const endDate = Date.parse(splited[1]);
+      if (endDate !== '' && startDate !== '') {
       const days = (startDate - endDate)/86400000
       const roundedDay = Math.abs(days) + 1
       const dailyPrice = document.querySelector('#total-price').dataset.price
       const totalPrice = parseInt(dailyPrice) * roundedDay
       document.querySelector('#total-price').innerText = "$" + totalPrice
+    }
     }
    });
 };
