@@ -1,32 +1,40 @@
 .border-img {
   width: 650px;
+  margin-bottom: 100px;
 }
 
 .book-img {
-  width: 200px;
-  height: 250px;
+  width: 229px;
+  height: 286px;
   z-index: 1;
   margin-top: 50px;
   position: absolute;
-  margin-left: 146px;
+  margin-left: 199px;
 }
 .text-input {
   position: absolute;
-  top: 235px;
+  top: 251px;
   color: white;
 }
 
 .text-details {
   z-index: 1;
-  margin-top: 325px;
-  margin-left: 122px;
+  margin-top: 370px;
+  margin-left: 142px;
   position: absolute;
   color: black;
 }
 .text-reviews {
-  margin-top: 37px;
-  margin-left: 498px;
+  margin-top: 48px;
+  margin-left: 577px;
   position: absolute;
   color: black;
+}
+
+.book {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
 }
 
