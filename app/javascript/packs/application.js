@@ -1,4 +1,4 @@
-import "bootstrap";
+import 'bootstrap';
 const inputs = document.querySelectorAll('.form-inputs');
 inputs.forEach((input)=>{
   input.addEventListener('change', (event) => {
@@ -15,3 +15,8 @@ inputs.forEach((input)=>{
   });
 });
 
+import 'mapbox-gl/dist/mapbox-gl.css';
+// internal imports
+import { initMapbox } from '../plugins/init_mapbox';
+
+initMapbox();

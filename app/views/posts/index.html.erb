@@ -1,3 +1,4 @@
+<body>
   <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://hpmedia.bloomsbury.com/rep/g/page-background-shell%20-%202.png);">
     <div class="container justify-content-center v-100">
       <a href="https://fontmeme.com/harry-potter-font/"><img src="https://fontmeme.com/permalink/190827/8c1e344d168f13ae872c3ce44d9b2750.png"class="img-responsive" alt="Responsive image" style="padding-top: 120px";></a>
@@ -27,3 +28,14 @@
         </div>
       </div>
   </div>
+
+  <div
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+  ></div>
+
+</body>
+
