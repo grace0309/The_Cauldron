@@ -17,6 +17,7 @@ gem 'webpacker'
 gem 'devise'
 gem 'rest-client'
 gem 'pundit'
+gem 'faker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
