@@ -1,14 +1,21 @@
 <div class="container vh-100 w-100 justify-content-center align-items-center mt-5">
-
-  <div class="card-booking" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-    <div class="card-booking-texts">
-      <h2>You have booked<strong> <%= "#{@booking.post.title}" %> </strong>from <strong><%= "#{@booking.user.name}"%></strong></h2>
-      <h3>From:<%= (@booking.start_date).strftime(" %d %b %Y") %>
-          To:<%= (@booking.end_date).strftime(" %d %b %Y") %>
-      </h3>
-      <h3>You paid:$
-        <%= @booking.total_price %>
-      </h3>
+  <div>
+    <h1 class="text-center" style="padding-top: 150px">
+      <%= "#{@booking.post.title}" %> booking</h1>
+    <div class="card-booking" style="border: 1px solid white;background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url(<%= " #{@booking.post.photo}" %>)">
+      <div class="card-booking-texts">
+        <h2>You have booked<strong>
+            <%= "#{@booking.post.title}" %> </strong>from <strong>
+            <%= "#{@booking.user.name}"%></strong></h2>
+        <h3>From:
+          <%= (@booking.start_date).strftime(" %d %b %Y") %>
+          To:
+          <%= (@booking.end_date).strftime(" %d %b %Y") %>
+        </h3>
+        <h3>You paid:$
+          <%= @booking.total_price %>
+        </h3>
+      </div>
     </div>
- </div>
+  </div>
 </div>
