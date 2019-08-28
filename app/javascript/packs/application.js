@@ -1,4 +1,8 @@
 import "bootstrap";
+import { toggleDateInputs } from '../components/booking';
+
+toggleDateInputs()
+
 const inputs = document.querySelectorAll('.form-inputs');
 inputs.forEach((input)=>{
   input.addEventListener('change', (event) => {
@@ -14,4 +18,3 @@ inputs.forEach((input)=>{
     }
   });
 });
-
