@@ -13,4 +13,10 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :price, presence: true
+  def unavailable_dates
+   dates_array = self.bookings.pluck(:start_date, :end_date)
+   dates = dates_array.map do |range|
+      { from: range[0], to: range[1] }
+    end
+  end
 end

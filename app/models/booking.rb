@@ -4,8 +4,11 @@ class Booking < ApplicationRecord
   has_one :review
 
   validates :start_date, presence: true
-  validates :end_date, presence: true
   before_save :set_total_price
+
+  def booked_date_range
+    { from: :start_date, to: :end_date }
+  end
 
   def set_total_price
     startdate = self.start_date
