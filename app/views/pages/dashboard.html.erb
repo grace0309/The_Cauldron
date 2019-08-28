@@ -6,8 +6,11 @@
     <h2>Your bookings</h2>
     <% @bookings.each do |booking| %>
     <li class='dashboard-list'>
-      <%= link_to booking.post.title, '#' %>
+      <%= link_to booking.post.title, booking_path(booking) %>
       <div>
+        <%= link_to new_booking_review_path(booking) do %>
+        <i class="far fa-sticky-note"></i>
+        <% end %>
         <%= link_to edit_booking_path(booking) do %>
         <i class="far fa-edit"></i>
         <% end %>

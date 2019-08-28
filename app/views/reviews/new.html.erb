@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row w-100 justify-content-center">
     <div class="text-input">
-    <div class="col-xs-4">
+    <div class="col-xs-12">
       <h2 class="text-white">Add a review</h2>
-      <%=simple_form_for [@post, @review] do |f| %>
+      <%=simple_form_for [@booking, @review] do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
       <div class="form-inputs">

@@ -1,16 +1,16 @@
 class ReviewsController < ApplicationController
   def new
     @review = Review.new
-    @post = Post.find(params[:post_id])
+    @booking = Booking.find(params[:booking_id])
   end
 
   def create
-    @post = Post.find(params[:post_id])
+    @booking = Booking.find(params[:booking_id])
     @review = Review.new(review_params)
-    @review.post = @post
+    @review.booking = @booking
     @review.user_id = current_user.id
     if @review.save
-      redirect_to post_path(@post)
+      redirect_to booking_path(@booking)
     else
       render :new
     end
@@ -23,13 +23,13 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     @review.update(review_params)
-    redirect_to post_path(@review.post)
+    redirect_to booking_path(@review.booking)
   end
 
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_to post_path(@post)
+    redirect_to booking_path(@booking)
   end
 
   private

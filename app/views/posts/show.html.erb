@@ -1,5 +1,6 @@
-<div class="container justify-content-center w-100 mt-5 h-100">
+<div class="container justify-content-center w-100 mt-5">
 <div class="text-reviews">
+  <h5>Reviews</h5>
   <h6>
     <% @post.reviews.each do |review| %>
       <p>
@@ -31,7 +32,8 @@
   <%= link_to "Rent now", new_post_booking_path(@post), class: "btn-flat text-center" %>
 </div>
 <div class="ml-1">
-  <%= image_tag "book1.jpg", class: "book-img"%>
+
+  <img src=" <%= "#{@post.photo}" %> "alt="Smiley face" class ="book-img" style ="border-radius: 10px ;object-fit: cover;">
   <%= image_tag "book.jpg", class: "book"  %>
 </div>
 </div>

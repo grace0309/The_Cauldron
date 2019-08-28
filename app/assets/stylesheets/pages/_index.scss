@@ -1,5 +1,6 @@
 // Import page-specific CSS files here.
 @import "home";
+
 @media (max-width: 960px) {
   /* For a screen < 960px, this CSS will be read */
   .container-fluid {
@@ -12,17 +13,15 @@
     width: 500px;
   }
 }
-@media (max-width: 540px) {
+@media (max-width: 540px) {s
   /* For a screen < 540px, this CSS will be read */
   .container-fluid {
     width: 300px;
   }
 }
 
-@media (min-width: 1200px) {
-.container-fluid{
-    width:1600px;
-}}
+
+
 
 body {
   background-color: #000000;
@@ -30,7 +29,11 @@ body {
   color: #FFFFFF;
 }
 
-.container {
+.container{
+  height: 100vh;
+}
+
+.container-fluid {
   height: 100vh;
 }
 
