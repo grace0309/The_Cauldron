@@ -1,40 +1,46 @@
-<body id="show-page">
-<div class="container justify-content-center w-100 mt-5 vh-100">
-  <div class="text-reviews">
-    <h5>Reviews</h5>
-    <h6>
-      <% @post.reviews.each do |review| %>
-      <p>
-        <%= review.content %>
-      </p>
-      <p>
-        -
-        <%= review.user.name %>
-      </p>
-      <% end %>
-    </h6>
+<body class="h-100">
+  <div class="container justify-content-center w-100 mt-5">
+    <div class="row">
+      <div class="col-4">
+        <img src=" <%= " #{@post.photo}" %> "alt="Smiley face" class ="book-img" style ="border-radius: 10px ;object-fit: cover;">
+      </div>
+      <div class="col-4">
+        <div class="text-details">
+          <h3 class="text-center">
+            <%= "#{@post.title}" %>
+          </h3>
+          <h6>Category :
+            <%= @post.category.category %>
+          </h6>
+          <h6>Content :
+            <%= @post.description %>
+          </h6>
+          <h6>Price :
+            <%= @post.price %>
+          </h6>
+          <h6>
+            <%= "Owned by: #{@post.user.name}"%>
+          </h6>
+          <%= link_to "Rent now", new_post_booking_path(@post), class: "btn btn-outline-dark btn-block btn-sm" %>
+          <%= link_to favourite_text, favourites_update_path(post: @post) , id: "favourite_link", class: "btn btn-outline-dark btn-block btn-sm" ,remote: true %>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="text-reviews">
+          <h5>Reviews</h5>
+          <h6>
+            <% @post.reviews.each do |review| %>
+            <p>
+              <%= review.content %>
+            </p>
+            <p>
+              -
+              <%= review.user.name %>
+            </p>
+            <% end %>
+          </h6>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="text-details">
-    <h3 class="text-center">
-      <%= "#{@post.title}" %>
-    </h3>
-    <h6>Category :
-      <%= @post.category.category %>
-    </h6>
-    <h6>Content :
-      <%= @post.description %>
-    </h6>
-    <h6>Price :
-      <%= @post.price %>
-    </h6>
-    <h6>
-      <%= "Owned by: #{@post.user.name}"%>
-    </h6>
-    <%= link_to "Rent now", new_post_booking_path(@post), class: "btn btn-outline-dark btn-block btn-sm" %>
-    <%= link_to favourite_text, favourites_update_path(post: @post) , id: "favourite_link" ,remote: true%>
-  </div>
-  <div class="ml-1">
-    <img src=" <%= " #{@post.photo}" %> "alt="Smiley face" class ="book-img" style ="border-radius: 10px ;object-fit: cover;">
-  </div>
-</div>
 </body>
