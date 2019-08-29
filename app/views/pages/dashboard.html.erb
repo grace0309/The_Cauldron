@@ -9,13 +9,13 @@
       <%= link_to booking.post.title, booking_path(booking) %>
       <div>
         <% if booking.review == nil %>
-          <%= link_to new_booking_review_path(booking) do %>
-          <i class="far fa-sticky-note"></i>
-          <% end %>
+        <%= link_to new_booking_review_path(booking) do %>
+        <i class="far fa-sticky-note"></i>
+        <% end %>
         <% else %>
-          <%= link_to edit_review_path(booking.review) do %>
-          <i class="far fa-sticky-note"></i>
-          <% end %>
+        <%= link_to edit_review_path(booking.review) do %>
+        <i class="far fa-sticky-note"></i>
+        <% end %>
         <% end %>
         <%= link_to edit_booking_path(booking) do %>
         <i class="far fa-edit"></i>
@@ -46,7 +46,16 @@
       </div>
     </li>
     <% end %>
+    <div class="favourites">
+      <h2>Your Favourites</h2>
+      <% current_user.favourites.each do |favourite| %>
+      <li class='dashboard-list'>
+        <%= link_to favourite.post.title, post_path(favourite.post)%>
+        <% end %>
+    </div>
+    </li>
   </div>
+</div>
 </div>
 <p class="alert">
   <%= "You are signed in as #{@user.email}" %>
