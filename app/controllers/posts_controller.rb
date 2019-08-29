@@ -11,12 +11,7 @@ class PostsController < ApplicationController
     else
       @posts = Post.all
     end
-    @markers = @mapped_posts.map do |post|
-      {
-        lat: post.latitude,
-        lng: post.longitude
-      }
-    end
+
     @mapped_posts = Post.geocoded
     markers(@mapped_posts)
     # coordinates = [params[:location][:lat], params[:location][:long]]

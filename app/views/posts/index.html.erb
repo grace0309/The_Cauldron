@@ -15,26 +15,32 @@
         <i class="fas fa-search"></i> Search
       </button>
     </div>
-
-      <div class="d-flex flex-row justify-content-center">
+  <h1 class="text-center"> Find by category</h1>
+      <div class="d-flex flex-row justify-content-center mt-5">
         <%= link_to root_path(:query => "Spells") do %>
         <div class="btn btn-category btn-primary text-center">
         Spells
         </div>
         <% end %>
-        <button class="btn-category btn-primary">
-        <%= link_to "Potions"  , root_path(:query => "Potions")%>
-        </button>
-        <button class="btn-category btn-primary">
-        <%= link_to "Creatures" , root_path(:query => "Creatures")%>
-        </button>
-        <button class="btn-category btn-primary">
-        <%= link_to "Wands" , root_path(:query => "Wands")%>
-        </button>
+        <%= link_to root_path(:query => "Potions") do %>
+        <div class="btn btn-category btn-primary text-center">
+        Potions
+        </div>
+        <% end %>
+        <%= link_to root_path(:query => "Creatures") do %>
+        <div class="btn btn-category btn-primary text-center">
+        Creatures
+        </div>
+        <% end %>
+        <%= link_to root_path(:query => "Wands") do %>
+        <div class="btn btn-category btn-primary text-center">
+        Wands
+        </div>
+        <% end %>
 
       </div>
   </form>
-  <h1 class="text-center mt-5">Find your magic today</h1>
+  <h1 class="text-center mt-5">Explore The Cauldron</h1>
     <div class="row pt-2 px-5">
       <% @posts.each do |post| %>
       <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
