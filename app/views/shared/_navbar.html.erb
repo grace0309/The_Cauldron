@@ -16,7 +16,7 @@
           <%= image_tag "https://vignette.wikia.nocookie.net/hpmor/images/8/83/Ron_Weasley.jpeg/revision/latest?cb=20190217164742", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "My Profile", dashboard_path, class: "dropdown-item" %>
-            <%= link_to "Add a post", new_post_path, class: "dropdown-item" %>
+            <%= link_to "Add your magic", new_post_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
