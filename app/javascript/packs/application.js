@@ -6,3 +6,6 @@ toggleDateInputs()
 
 import { initMapbox } from '../plugins/init_mapbox';
 initMapbox();
+
+import { initNavigator } from '../components/navigator';
+initNavigator();

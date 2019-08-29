@@ -1,23 +1,17 @@
 class BookingsController < ApplicationController
+  before_action :find_booking, only: [ :show, :destroy, :edit, :update]
+  before_action :new_booking, only: [ :new, :create]
+
   def new
-    @booking = Booking.new
-    authorize @booking
-    @post = Post.find(params[:post_id])
   end
 
   def show
-    @booking = Booking.find(params[:id])
-    authorize @booking
   end
 
   def create
-    @post = Post.find(params[:post_id])
     range = (params[:booking][:start_date]).split("to")
-    @booking = Booking.new(booking_params)
     @booking.start_date = range[0]
     @booking.end_date = range[1]
-    authorize @booking
-    @booking.post = @post
     @booking.user_id = current_user.id
     if @booking.save
       redirect_to dashboard_path
@@ -27,25 +21,30 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    @booking = Booking.find(params[:id])
-    authorize @booking
   end
 
   def update
-    @booking = Booking.find(params[:id])
-    authorize @booking
     @booking.update(booking_params)
     redirect_to dashboard_path
   end
 
   def destroy
-    @booking = Booking.find(params[:id])
-    authorize @booking
     @booking.destroy
     redirect_to dashboard_path
   end
 
   private
+
+  def new_booking
+    @post = Post.find(params[:post_id])
+    @booking = Booking.new(post: @post)
+    authorize @booking
+  end
+
+  def find_booking
+    @booking = Booking.find(params[:id])
+    authorize @booking
+  end
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :total_price)

@@ -13,10 +13,15 @@ class ApplicationController < ActionController::Base
   #   flash[:alert] = "You are not authorized to perform this action."
   #   redirect_to(root_path)
   # end
+  def favourite_text
+    return @favourite_exists ? "Unfavourite" : "Favourite"
+  end
+
+  helper_method :favourite_text
 
   private
 
   def skip_pundit?
-    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)|(^reviews$)/
+    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)|(^favourites$)/
   end
 end
