@@ -15,6 +15,5 @@ Rails.application.routes.draw do
   resources :search, only: [:index]
   resources :bookings, only: [ :show, :edit, :update, :destroy]
   resources :reviews, only: [ :edit, :update, :destroy]
-  resources :favorite_posts, only: [:create, :destroy]
   get "/dashboard", to: "pages#dashboard", as: :dashboard
 end
