@@ -15,26 +15,45 @@
         <i class="fas fa-search"></i> Search
       </button>
     </div>
-  </div>
-      </form>
-      <h1 class="text-center mt-5">Find your magic today</h1>
-      <div class="row pt-2 px-5">
-        <% @posts.each do |post| %>
-        <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
-          <%= link_to post_path(post) do %>
-          <div class="card h-100">
-            <img class="card-img-top" src=<%=post.photo %>>
-            <div class="card-body d-flex justify-content-between">
-              <div>
-                <h4 class="card-title">
-                  <%= post.title %>
-                </h4>
-                <p class="card-subtitle">
-                  <%= post.description%>
-                </p>
-              </div>
-              <h5 class="card-title">$
+
+      <div class="d-flex flex-row justify-content-center">
+        <%= link_to root_path(:query => "Spells") do %>
+        <div class="btn btn-category btn-primary text-center">
+        Spells
+        </div>
+        <% end %>
+        <button class="btn-category btn-primary">
+        <%= link_to "Potions"  , root_path(:query => "Potions")%>
+        </button>
+        <button class="btn-category btn-primary">
+        <%= link_to "Creatures" , root_path(:query => "Creatures")%>
+        </button>
+        <button class="btn-category btn-primary">
+        <%= link_to "Wands" , root_path(:query => "Wands")%>
+        </button>
+
+      </div>
+  </form>
+  <h1 class="text-center mt-5">Find your magic today</h1>
+    <div class="row pt-2 px-5">
+      <% @posts.each do |post| %>
+      <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
+        <%= link_to post_path(post) do %>
+        <div class="card h-100">
+          <img class="card-img-top" src=<%=post.photo %>>
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">
+                <%= post.title %>
+              </h4>
+              <p class="card-subtitle">
+                <%= post.description%>
+              </p>
+            </div>
+            <h5 class="card-title">$
                 <%= post.price%>/day</h5>
+
+
             </div>
           </div>
         </div>
