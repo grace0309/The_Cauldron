@@ -6,6 +6,8 @@ class PostsController < ApplicationController
     # @posts = Post.all
     @mapped_posts = Post.geocoded
     markers(@mapped_posts)
+    coordinates = [params[:location][:lat], params[:location][:long]]
+    @near_posts = Post.near(coordinates, 20)
   end
 
   def show
