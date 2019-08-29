@@ -1,49 +1,49 @@
-<div class= "h-100">
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://hpmedia.bloomsbury.com/rep/g/page-background-shell%20-%202.png);">
-  <div class="container justify-content-center v-100">
-    <a href="https://fontmeme.com/harry-potter-font/"><img src="https://fontmeme.com/permalink/190827/8c1e344d168f13ae872c3ce44d9b2750.png" class="img-responsive" alt="Responsive image" style="padding-top: 120px" ;></a>
+<div class="h-100">
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://hpmedia.bloomsbury.com/rep/g/page-background-shell%20-%202.png);">
+    <div class="container justify-content-center v-100">
+      <a href="https://fontmeme.com/harry-potter-font/"><img src="https://fontmeme.com/permalink/190827/8c1e344d168f13ae872c3ce44d9b2750.png" class="img-responsive" alt="Responsive image" style="padding-top: 120px" ;></a>
+    </div>
   </div>
-</div>
-<div class="page-content">
-  <div class="container-fluid">
-  <form novalidate="novalidate" class="simple_form search" action="/" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
-    <div class="search-form-control form-group px-5">
-      <input class="form-control string required " type="text" name="query" id="search_query" placeholder="search for a spell/portion/creature" />
-      <button name="button" type="submit" class="btn btn-flat">
-        <i class="fas fa-search"></i> Search
-      </button>
-    </div>
-  </form>
-  <h1 class="text-center mt-5">Find your magic today</h1>
-    <div class="row pt-2 px-5">
-      <% @posts.each do |post| %>
-      <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
-        <%= link_to post_path(post) do %>
-        <div class="card h-100">
-          <img class="card-img-top" src=<%=post.photo %>>
-          <div class="card-body d-flex justify-content-between">
-            <div>
-              <h4 class="card-title">
-                <%= post.title %>
-              </h4>
-              <p class="card-subtitle">
-                <%= post.description%>
-              </p>
-            </div>
-            <h5 class="card-title">$
-              <%= post.price%>/day</h5>
-          </div>
+  <div class="page-content">
+    <div class="container-fluid">
+      <form novalidate="novalidate" class="simple_form search" action="/" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+        <div class="search-form-control form-group px-5">
+          <input class="form-control string required " type="text" name="query" id="search_query" placeholder="search for a spell/portion/creature" />
+          <button name="button" type="submit" class="btn btn-flat">
+            <i class="fas fa-search"></i> Search
+          </button>
         </div>
+      </form>
+      <h1 class="text-center mt-5">Find your magic today</h1>
+      <div class="row pt-2 px-5">
+        <% @posts.each do |post| %>
+        <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
+          <%= link_to post_path(post) do %>
+          <div class="card h-100">
+            <img class="card-img-top" src=<%=post.photo %>>
+            <div class="card-body d-flex justify-content-between">
+              <div>
+                <h4 class="card-title">
+                  <%= post.title %>
+                </h4>
+                <p class="card-subtitle">
+                  <%= post.description%>
+                </p>
+              </div>
+              <h5 class="card-title">$
+                <%= post.price%>/day</h5>
+            </div>
+          </div>
+          <%- unless current_user.favorite_projects.exists?(id: post.id) -%>
+          <%= link_to 'Add to favorites', favorite_posts_path(post_id: post), method: :post %>
+          <%- else -%>
+          <%= link_to 'Remove from favorites', favorite_post_path(post), method: :delete %>
+          <%- end -%>
+        </div>
+        <% end %>
+        <% end %>
       </div>
-      <% end %>
-      <% end %>
+      <div id="map" style="width: 100%;
+    height: 600px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
-  <div
-    id="map"
-    style="width: 100%;
-    height: 600px;"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-  ></div>
-</div>
-</div>
+  </div>
