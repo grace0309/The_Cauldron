@@ -4,20 +4,11 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    @mapped_posts = Post.geocoded
     # @posts = Post.all
-    if params[:query].present?
-      @posts = Post.global_search(params[:query])
-    else
-      @posts = Post.all
-    end
-    @markers = @mapped_posts.map do |post|
-      {
-        lat: post.latitude,
-        lng: post.longitude
-      }
-    end
-
+    @mapped_posts = Post.geocoded
+    markers(@mapped_posts)
+    coordinates = [params[:location][:lat], params[:location][:long]]
+    @near_posts = Post.near(coordinates, 20)
   end
 
   def show
@@ -70,5 +61,21 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :description, :price, :photo)
+  end
+
+  def markers(mapped_posts)
+    @markers = mapped_posts.map do |post|
+      {
+        lat: post.latitude,
+        lng: post.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { post: post })
+      }
+    end
+  end
+
+  def near_post
+    result = request.location
+    coordinates = result.first.coordinates
+    @near_posts = Post.near(coordinates, 1)
   end
 end
