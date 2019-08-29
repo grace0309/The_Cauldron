@@ -14,9 +14,11 @@
       </button>
     </div>
       <div class="d-flex flex-row justify-content-center">
-        <button class="btn-category btn-primary">
-        <%= link_to "Spells"  , root_path(:query => "Spells")%>
-        </button>
+        <%= link_to root_path(:query => "Spells") do %>
+        <div class="btn btn-category btn-primary text-center">
+        Spells
+        </div>
+        <% end %>
         <button class="btn-category btn-primary">
         <%= link_to "Potions"  , root_path(:query => "Potions")%>
         </button>
