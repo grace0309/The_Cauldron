@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_08_29_035708) do
-=======
-ActiveRecord::Schema.define(version: 2019_08_29_031252) do
->>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_031252) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_favourites_on_post_id"
     t.index ["user_id"], name: "index_favourites_on_user_id"
+  end
 
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
