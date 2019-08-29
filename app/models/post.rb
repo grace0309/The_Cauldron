@@ -4,10 +4,13 @@ class Post < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :reviews, through: :bookings
   include PgSearch::Model
-  pg_search_scope :search,
+  pg_search_scope :global_search,
     against: [ :title, :description ],
+    associated_against: {
+      category: [ :category ]
+    },
     using: {
-      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+      tsearch: { any_word: true }
     }
 
   validates :title, presence: true
