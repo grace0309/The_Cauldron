@@ -1,20 +1,18 @@
 class BookingPolicy < ApplicationPolicy
   def show?
-    return true
+    record.user == user
   end
 
   def create?
-    return true
+    record.post.user != user
   end
 
   def new?
-    return true
+    record.post.user != user
   end
 
   def update?
     record.user == user
-    # - record: the restaurant passed to the `authorize` method in controller
-    # - user:   the `current_user` signed in with Devise.
   end
 
   def destroy?
