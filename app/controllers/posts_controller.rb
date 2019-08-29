@@ -5,17 +5,18 @@ class PostsController < ApplicationController
     @posts = Post.all
     @mapped_posts = Post.geocoded
     # @posts = Post.all
+    if params[:query].present?
+      @posts = Post.global_search(params[:query])
+    else
+      @posts = Post.all
+    end
     @markers = @mapped_posts.map do |post|
       {
         lat: post.latitude,
         lng: post.longitude
       }
     end
-    if params[:query].present?
-      @posts = Post.search(params[:query])
-    else
-      @posts = Post.all
-    end
+
   end
 
   def show
