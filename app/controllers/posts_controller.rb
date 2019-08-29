@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :destroy, :edit, :update]
+  before_action :authenticate_user!, except: [:index]
 
   def index
     @posts = Post.all
@@ -21,6 +22,7 @@ class PostsController < ApplicationController
 
   def show
     authorize @post
+    @favourite_exists = Favourite.where(post: @post, user: current_user) == [] ? false : true
   end
 
   def new
