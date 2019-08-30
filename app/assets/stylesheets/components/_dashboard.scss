@@ -1,8 +1,6 @@
 .dashboard {
-  display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  height: 375px;
+  justify-content: center;
   padding: 30px;
 }
 
@@ -16,6 +14,5 @@
   padding: 8px 16px;
   border: 1px solid rgb(235,235,235);
   justify-content: space-between;
-  width: 400px;
   border-radius: 10px;
 }

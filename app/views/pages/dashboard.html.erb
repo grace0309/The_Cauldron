@@ -2,79 +2,98 @@
   <%= "Welcome, #{@user.name}!"%>
 </h1>
 <div class='container vh-100 dashboard'>
-  <div class="bookings">
-    <h2>Your bookings</h2>
-    <% @bookings.each do |booking| %>
-    <li class='dashboard-list'>
-      <%= link_to booking.post.title, booking_path(booking) %>
-      <div>
-        <% if booking.review == nil %>
-        <%= link_to new_booking_review_path(booking) do %>
-        <i class="far fa-sticky-note"></i>
-        <% end %>
-        <% else %>
-        <%= link_to edit_review_path(booking.review) do %>
-        <i class="far fa-sticky-note"></i>
-        <% end %>
-        <% end %>
-        <%= link_to edit_booking_path(booking) do %>
-        <i class="far fa-edit"></i>
-        <% end %>
-        <%= link_to  booking_path(booking),
-            method: :delete,
-            data: { confirm: "Do you want to delete #{booking.post.title}?" } do %>
-        <i class="far fa-trash-alt"></i>
-        <% end %>
-      </div>
-    </li>
-    <% end %>
-  </div>
-  <div class="posts">
-    <h2>Your posts</h2>
-    <% @posts.each do |post|  %>
-    <li class='dashboard-list'>
-      <%= link_to post.title, post_path(post) %>
-      <div class>
-        <%= link_to edit_post_path(post) do %>
-        <i class="far fa-edit"></i>
-        <% end %>
-        <%= link_to  post_path(post),
-              method: :delete,
-              data: { confirm: "Do you want to delete #{post.title}?" } do %>
-        <i class="far fa-trash-alt"></i>
-        <% end %>
-      </div>
-    </li>
-    <div>
-      <% post.bookings.each do |book| %>
-      <% if book.active == true %>
-      <p> ↳
-        <%= book.start_date.strftime(" %d %b %Y")%> -
-        <%= book.end_date.strftime(" %d %b %Y")%>
-        by
-        <%= book.user.name %>
-        <%=simple_form_for [book] do |f| %>
-        <div class="form-inputs">
-          <%= f.hidden_field :active, value: false%>
-        </div>
-        <button type="submit" class="btn-check-box"><i class="far fa-check-square"></i>
-        </button>
-        <% end %>
-      </p>
-      <% end %>
-      <% end %>
-    </div>
-    <% end %>
-    <div class="favourites">
-      <h2>Your Favourites</h2>
-      <% current_user.favourites.each do |favourite| %>
+  <div class="row">
+    <div class="col-4">
+      <h2>Current Bookings</h2>
+      <% @bookings.each do |booking| %>
+      <% if booking.active == true %>
       <li class='dashboard-list'>
-        <%= link_to favourite.post.title, post_path(favourite.post)%>
-        <% end %>
+        <%= link_to booking.post.title, booking_path(booking) %>
+        <div>
+          <% if booking.review == nil %>
+          <%= link_to new_booking_review_path(booking) do %>
+          <i class="far fa-sticky-note"></i>
+          <% end %>
+          <% else %>
+          <%= link_to edit_review_path(booking.review) do %>
+          <i class="far fa-sticky-note"></i>
+          <% end %>
+          <% end %>
+          <%= link_to edit_booking_path(booking) do %>
+          <i class="far fa-edit"></i>
+          <% end %>
+          <%= link_to  booking_path(booking),
+           method: :delete,
+           data: { confirm: "Do you want to delete #{booking.post.title}?" } do %>
+          <i class="far fa-trash-alt"></i>
+          <% end %>
+        </div>
+      </li>
+      <% end %>
+      <% end %>
     </div>
-    </li>
+    <div class="col-4">
+      <h2>My Posts</h2>
+      <% @posts.each do |post|  %>
+      <li class='dashboard-list'>
+        <%= link_to post.title, post_path(post) %>
+        <div class>
+          <%= link_to edit_post_path(post) do %>
+          <i class="far fa-edit"></i>
+          <% end %>
+          <%= link_to  post_path(post),
+             method: :delete,
+             data: { confirm: "Do you want to delete #{post.title}?" } do %>
+          <i class="far fa-trash-alt"></i>
+          <% end %>
+        </div>
+      </li>
+      <div class="d-flex">
+        <% post.bookings.each do |book| %>
+        <% if book.active == true %>
+          <%=simple_form_for [book] do |f| %>
+          <div class="form-inputs sm-3">
+            <%= f.hidden_field :active, value: false%>
+          </div>
+          <button type="submit" class="btn-check-box mx-sm-3">
+            <i class="far fa-check-square"></i>
+          </button>
+          <% end %>
+          <div >
+          <%= book.start_date.strftime(" %d %b %Y")%> -
+          <%= book.end_date.strftime(" %d %b %Y")%>
+          by
+          <%= book.user.name%>
+          </div>
+          <% end %>
+          <% end %>
+      </div>
+      <% end %>
+    </div>
+      <div class="col-4">
+        <h2>Your Favourites</h2>
+        <% current_user.favourites.each do |favourite| %>
+        <li class='dashboard-list'>
+          <%= link_to favourite.post.title, post_path(favourite.post)%>
+          <% end %>
+        </li>
+      </div>
   </div>
-</div>
+  <div class="row mt-3">
+    <div class="col-4">
+      <h2>Past Bookings</h2>
+      <% @bookings.each do |booking| %>
+      <% if booking.active == false %>
+        <li class='dashboard-list text-dark'>
+          <%= link_to booking.post.title, booking_path(booking) %>
+          <%= booking.start_date.strftime(" %d %b %Y")%> -
+          <%= booking.end_date.strftime(" %d %b %Y")%>
+          <% end %>
+        </li>
+      <% end %>
+    </div>
+  </div>
+  </div>
 </div>
 </div>
 <p class="alert">

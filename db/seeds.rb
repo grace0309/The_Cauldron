@@ -106,7 +106,7 @@ end
 puts 'Finished!'
 
 puts 'Creating bookings...'
-20.times do
+50.times do
   post = Post.all.sample
   user = (User.all - [post.user]).sample
   review = Booking.create(
@@ -118,12 +118,12 @@ puts 'Creating bookings...'
 end
 
 puts 'Creating reviews...'
-50.times do
+40.times do
   booking = Booking.all.sample
   review = Review.create(
     user: booking.user,
     booking: booking,
-    content: Faker::TvShows::HowIMetYourMother.quote
+    content: Faker::Quote.famous_last_words
     )
 end
 
