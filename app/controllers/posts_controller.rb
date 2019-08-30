@@ -4,12 +4,17 @@ class PostsController < ApplicationController
   def index
     if params[:query].present?
       @posts = Post.global_search(params[:query])
-    elsif params[:location].present?
+    elsif params[:location].present? && params[:location][:lat] != '' && params[:location][:long] != ''
       @posts = near_posts
     else
       @posts = Post.all
     end
-    @markers = markers(@posts)
+
+    if @posts == []
+      @markers = nil
+    else
+      @markers = markers(@posts)
+    end
   end
 
   def show
