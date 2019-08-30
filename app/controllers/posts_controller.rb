@@ -2,18 +2,14 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :destroy, :edit, :update]
 
   def index
-    @posts = Post.all
-    # @posts = Post.all
-
     if params[:query].present?
       @posts = Post.global_search(params[:query])
+    elsif params[:location].present?
+      @posts = near_posts
     else
       @posts = Post.all
     end
-    @mapped_posts = Post.geocoded
-    markers(@mapped_posts)
-    # coordinates = [params[:location][:lat], params[:location][:long]]
-    # @near_posts = Post.near(coordinates, 20)
+    @markers = markers(@posts)
   end
 
   def show
@@ -78,9 +74,10 @@ class PostsController < ApplicationController
     end
   end
 
-  def near_post
-    result = request.location
-    coordinates = result.first.coordinates
-    @near_posts = Post.near(coordinates, 1)
+  def near_posts
+    # result = request.location
+    # coordinates = result.first.coordinates
+    coordinates = [params[:location][:lat], params[:location][:long]]
+    Post.near(coordinates, 20)
   end
 end
