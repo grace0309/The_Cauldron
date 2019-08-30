@@ -37,13 +37,14 @@ puts 'Creating posts...'
 puts 'Creating spells...'
 spells = Category.find_by category: 'Spells'
 response = RestClient.get 'https://www.potterapi.com/v1/spells?key=$2a$10$64FSHysMBSjgcbf/TFJN9OFIbsWkBfgye2rU8nEpM7LJB4GPgZmg6'
-result = JSON.parse(response)[0...5]
+raw = JSON.parse(response)
+result = raw.sample(5)
 result.each do |spell|
   title = spell['spell']
   desc = spell['effect'].capitalize
   price = rand(10...50)
   user = User.all.sample
-  address = Faker::Address.street_address
+  address = Faker::Address.country
   photo = "https://source.unsplash.com/600x400/?spell,#{title}"
   Post.create(title: title, description: desc, price: price, user: user, category: spells, photo: photo, address: address)
 end
@@ -58,7 +59,7 @@ result.each do |character|
     desc = character['species'].capitalize
     user = User.all.sample
     price = rand(30...100)
-    address = Faker::Address.street_address
+    address = Faker::Address.city
     photo = "https://source.unsplash.com/600x400/?creature,#{name}"
     Post.create(title: name, description: desc, price: price, user: user, category: creatures, photo: photo, address: address)
   end
@@ -74,7 +75,7 @@ potions = Category.find_by category: 'Potions'
     price: rand(10...50),
     user: user,
     category: potions,
-    address: Faker::Address.street_address
+    address: Faker::Address.country
   )
   post.photo = "https://source.unsplash.com/600x400/?potion,#{post.title}"
   post.save!
@@ -90,7 +91,7 @@ wands = Category.find_by category: 'Wands'
     price: rand(10...50),
     user: user,
     category: wands,
-    address: Faker::Address.street_address
+    address: Faker::Address.state
   )
   post.photo = "https://source.unsplash.com/600x400/?wand,#{post.title}"
   post.save
@@ -98,7 +99,7 @@ end
 
 puts 'Adding nearby addresses...'
 
-10.times do
+5.times do
   singapore
 end
 
@@ -122,15 +123,8 @@ puts 'Creating reviews...'
   review = Review.create(
     user: booking.user,
     booking: booking,
-    content: Faker::Quote.famous_last_words
+    content: Faker::TvShows::HowIMetYourMother.quote
     )
 end
 
 puts 'Finished!'
-
-def singapore
-  address = ['Orchard Road Singapore', 'Bishan Singapore', 'Paya Lebar Singapore', 'Jurong Bird Park Singapore', 'Marina Bay Sands Singapore']
-  post = Post.all.sample
-  post.address = address.sample
-  post.save
-end
