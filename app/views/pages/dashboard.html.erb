@@ -47,7 +47,12 @@
     </li>
     <div>
       <% post.bookings.each do |book| %>
-        <p><%= book.start_date.strftime(" %d %b %Y")%> - <%= book.end_date.strftime(" %d %b %Y")%> by <%= book.user.name %> </p>
+        <p> ↳ <%= book.start_date.strftime(" %d %b %Y")%> - <%= book.end_date.strftime(" %d %b %Y")%>
+          by <%= book.user.name %>
+          <%= link_to bookings_path do %>
+          <i class="far fa-check-square"></i>
+          <% end %>
+        </p>
         <% end %>
     </div>
     <% end %>
