@@ -4,7 +4,7 @@
       <div class="col-6">
         <img src=" <%= " #{@post.photo}" %> "alt="magic item" class ="book-img" style ="border-radius: 10px ;object-fit: cover;">
       </div>
-      <div class="col-4 ml-5 pl-5">
+      <div class="col-4 ml-5 pl-5 ">
         <div class="text-details">
           <h3 >
             <%= "#{@post.title}" %>
@@ -32,7 +32,7 @@
             <% @post.reviews.each do |review| %>
             <p>
               <div class="notification">
-                <%= image_tag "Minerva.jpg", class: "avatar-large" %>
+                <%= image_tag review.user.image_url, class: "avatar-large" %>
 
                 <div class="notification-content">
                   <p><%= review.content %></p>
