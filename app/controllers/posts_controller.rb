@@ -2,19 +2,14 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :destroy, :edit, :update]
 
   def index
+    @posts = Post.all
     if params[:query].present?
-      @posts = Post.global_search(params[:query])
-    elsif params[:location].present? && params[:location][:lat] != '' && params[:location][:long] != ''
-      @posts = near_posts
-    else
-      @posts = Post.all
+      @posts = @posts.global_search(params[:query])
     end
-
-    if @posts == []
-      @markers = nil
-    else
-      @markers = markers(@posts)
+    if params[:location].present? && params[:location][:lat] != '' && params[:location][:long] != ''
+      @posts = @posts.near([params[:location][:lat], params[:location][:long]], 20)
     end
+    @markers = markers(@posts)
   end
 
   def show

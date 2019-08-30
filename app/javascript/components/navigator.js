@@ -6,10 +6,10 @@ var options = {
 
 function success(pos) {
   var crd = pos.coords;
-  document.querySelector("#lat_query").value = crd.latitude
-  document.querySelector("#long_query").value = crd.longitude
-  console.log(document.querySelector("#lat_query").value)
-  console.log(document.querySelector("#long_query").value)
+  window.lat = crd.latitude;
+  window.long = crd.longitude;
+  // document.querySelector("#lat_query").value = crd.latitude
+  // document.querySelector("#long_query").value = crd.longitude
 }
 
 function error(err) {
@@ -21,10 +21,12 @@ const initNavigator = async function () {
 }
 
 const bindNearby = function () {
+  initNavigator();
   const button = document.querySelector("#nearby")
   button.addEventListener('click', (event) => {
   // Do something (callback)
-    initNavigator();
+    document.querySelector("#lat_query").value = window.lat
+    document.querySelector("#long_query").value = window.long
     const form = document.querySelector(".simple_form.search")
     setTimeout(function() {form.submit()},300)
   });
