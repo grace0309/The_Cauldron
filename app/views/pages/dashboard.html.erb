@@ -47,13 +47,22 @@
     </li>
     <div>
       <% post.bookings.each do |book| %>
-        <p> ↳ <%= book.start_date.strftime(" %d %b %Y")%> - <%= book.end_date.strftime(" %d %b %Y")%>
-          by <%= book.user.name %>
-          <%= link_to bookings_path do %>
-          <i class="far fa-check-square"></i>
-          <% end %>
-        </p>
+      <% if book.active == true %>
+      <p> ↳
+        <%= book.start_date.strftime(" %d %b %Y")%> -
+        <%= book.end_date.strftime(" %d %b %Y")%>
+        by
+        <%= book.user.name %>
+        <%=simple_form_for [book] do |f| %>
+        <div class="form-inputs">
+          <%= f.hidden_field :active, value: false%>
+        </div>
+        <button type="submit" class="btn-check-box"><i class="far fa-check-square"></i>
+        </button>
         <% end %>
+      </p>
+      <% end %>
+      <% end %>
     </div>
     <% end %>
     <div class="favourites">
