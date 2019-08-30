@@ -45,6 +45,11 @@
         <% end %>
       </div>
     </li>
+    <div>
+      <% post.bookings.each do |book| %>
+        <p><%= book.start_date.strftime(" %d %b %Y")%> - <%= book.end_date.strftime(" %d %b %Y")%> by <%= book.user.name %> </p>
+        <% end %>
+    </div>
     <% end %>
     <div class="favourites">
       <h2>Your Favourites</h2>
@@ -55,6 +60,7 @@
     </div>
     </li>
   </div>
+</div>
 </div>
 </div>
 <p class="alert">
