@@ -20,7 +20,8 @@ result.each do |character|
   if character['species'] == 'human'
     name = character['name']
     email = "#{name.downcase.delete(' ')}@hogwarts.com"
-    User.create(name: name, email: email, password: '123456')
+    image_url = "name.downcase.delete(' ').jpg"
+    User.create(name: name, email: email, password: '123456', image_url: image_url)
   end
 end
 puts 'Finished!'
