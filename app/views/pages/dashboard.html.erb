@@ -2,71 +2,79 @@
   <%= "Welcome, #{@user.name}!"%>
 </h1>
 <div class='container vh-100 dashboard'>
-  <div class="bookings">
-    <h2>Your bookings</h2>
-    <% @bookings.each do |booking| %>
-    <li class='dashboard-list'>
-      <%= link_to booking.post.title, booking_path(booking) %>
-      <div>
-        <% if booking.review == nil %>
-        <%= link_to new_booking_review_path(booking) do %>
-        <i class="far fa-sticky-note"></i>
-        <% end %>
-        <% else %>
-        <%= link_to edit_review_path(booking.review) do %>
-        <i class="far fa-sticky-note"></i>
-        <% end %>
-        <% end %>
-        <%= link_to edit_booking_path(booking) do %>
-        <i class="far fa-edit"></i>
-        <% end %>
-        <%= link_to  booking_path(booking),
-            method: :delete,
-            data: { confirm: "Do you want to delete #{booking.post.title}?" } do %>
-        <i class="far fa-trash-alt"></i>
-        <% end %>
-      </div>
-    </li>
-    <% end %>
-  </div>
-  <div class="posts">
-    <h2>Your posts</h2>
-    <% @posts.each do |post|  %>
-    <li class='dashboard-list'>
-      <%= link_to post.title, post_path(post) %>
-      <div class>
-        <%= link_to edit_post_path(post) do %>
-        <i class="far fa-edit"></i>
-        <% end %>
-        <%= link_to  post_path(post),
+  <div class="row">
+    <div class="col-4">
+      <h2>Your bookings</h2>
+      <% @bookings.each do |booking| %>
+      <li class='dashboard-list'>
+        <%= link_to booking.post.title, booking_path(booking) %>
+        <div>
+          <% if booking.review == nil %>
+          <%= link_to new_booking_review_path(booking) do %>
+          <i class="far fa-sticky-note"></i>
+          <% end %>
+          <% else %>
+          <%= link_to edit_review_path(booking.review) do %>
+          <i class="far fa-sticky-note"></i>
+          <% end %>
+          <% end %>
+          <%= link_to edit_booking_path(booking) do %>
+          <i class="far fa-edit"></i>
+          <% end %>
+          <%= link_to  booking_path(booking),
               method: :delete,
-              data: { confirm: "Do you want to delete #{post.title}?" } do %>
-        <i class="far fa-trash-alt"></i>
-        <% end %>
-      </div>
-    </li>
-    <div>
-      <% post.bookings.each do |book| %>
-        <p> ↳ <%= book.start_date.strftime(" %d %b %Y")%> - <%= book.end_date.strftime(" %d %b %Y")%>
-          by <%= book.user.name %>
+              data: { confirm: "Do you want to delete #{booking.post.title}?" } do %>
+          <i class="far fa-trash-alt"></i>
+          <% end %>
+        </div>
+      </li>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <h2>Your posts</h2>
+      <% @posts.each do |post|  %>
+      <li class='dashboard-list'>
+        <%= link_to post.title, post_path(post) %>
+        <div class>
+          <%= link_to edit_post_path(post) do %>
+          <i class="far fa-edit"></i>
+          <% end %>
+          <%= link_to  post_path(post),
+                method: :delete,
+                data: { confirm: "Do you want to delete #{post.title}?" } do %>
+          <i class="far fa-trash-alt"></i>
+          <% end %>
+        </div>
+      </li>
+        <% post.bookings.each do |book| %>
+        <div>
+        <p> ↳
+          <%= book.start_date.strftime(" %d %b %Y")%> -
+          <%= book.end_date.strftime(" %d %b %Y")%>
+          by
+          <%= book.user.name %>
           <%= link_to bookings_path do %>
           <i class="far fa-check-square"></i>
           <% end %>
         </p>
+        </div>
         <% end %>
+      <% end %>
     </div>
-    <% end %>
-    <div class="favourites">
-      <h2>Your Favourites</h2>
-      <% current_user.favourites.each do |favourite| %>
-      <li class='dashboard-list'>
-        <%= link_to favourite.post.title, post_path(favourite.post)%>
-        <% end %>
-    </div>
-    </li>
+      <div class="col-4">
+        <h2>Your Favourites</h2>
+        <% current_user.favourites.each do |favourite| %>
+          <li class='dashboard-list'>
+            <%= link_to favourite.post.title, post_path(favourite.post)%>
+            <% end %>
+          </li>
+      </div>
   </div>
-</div>
-</div>
+  <div class="row">
+    <div class="col-4">
+      <h2>What you've booked</h2>
+    </div>
+  </div>
 </div>
 <p class="alert">
   <%= "You are signed in as #{@user.email}" %>
