@@ -1,7 +1,7 @@
 <h1 class="text-center">
   <%= "Welcome, #{@user.name}!"%>
 </h1>
-<div class='container vh-100 dashboard'>
+<div class='container dashboard'>
   <div class="row">
     <div class="col-4">
       <h2>Current Bookings</h2>
@@ -48,8 +48,8 @@
           <% end %>
         </div>
       </li>
-      <div class="d-flex">
         <% post.bookings.each do |book| %>
+      <div class="d-flex">
         <% if book.active == true %>
           <%=simple_form_for [book] do |f| %>
           <div class="form-inputs sm-3">
@@ -65,9 +65,9 @@
           by
           <%= book.user.name%>
           </div>
+          </div>
           <% end %>
           <% end %>
-      </div>
       <% end %>
     </div>
       <div class="col-4">
