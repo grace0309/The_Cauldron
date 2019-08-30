@@ -48,8 +48,8 @@
           <% end %>
         </div>
       </li>
-      <div class="d-flex">
         <% post.bookings.each do |book| %>
+        <div class="d-flex">
         <% if book.active == true %>
           <%=simple_form_for [book] do |f| %>
           <div class="form-inputs sm-3">
@@ -65,6 +65,7 @@
           by
           <%= book.user.name%>
           </div>
+        </div>
           <% end %>
           <% end %>
       </div>
