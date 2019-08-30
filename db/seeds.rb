@@ -6,6 +6,13 @@ Post.destroy_all
 Category.destroy_all
 User.destroy_all
 
+def singapore
+  address = ['Orchard Road Singapore', 'Bishan Singapore', 'Paya Lebar Singapore', 'Jurong Bird Park Singapore', 'Marina Bay Sands Singapore']
+  post = Post.all.sample
+  post.address = address.sample
+  post.save
+end
+
 puts 'Creating categories...'
 Category.create(category: 'Wands')
 Category.create(category: 'Potions')
@@ -88,26 +95,32 @@ wands = Category.find_by category: 'Wands'
   post.photo = "https://source.unsplash.com/600x400/?wand,#{post.title}"
   post.save
 end
+
+puts 'Adding nearby addresses...'
+
+10.times do
+  singapore
+end
+
 puts 'Finished!'
 
 puts 'Creating bookings...'
 20.times do
-  user = User.all.sample
   post = Post.all.sample
+  user = (User.all - [post.user]).sample
   review = Booking.create(
     user: user,
     post: post,
-    start_date: Date.today + rand(5..10),
+    start_date: Date.today + rand(1..10),
     end_date: Date.today + rand(10..20),
     )
 end
 
 puts 'Creating reviews...'
-20.times do
-  user = User.all.sample
+50.times do
   booking = Booking.all.sample
   review = Review.create(
-    user: user,
+    user: booking.user,
     booking: booking,
     content: Faker::Quote.famous_last_words
     )
@@ -115,3 +128,9 @@ end
 
 puts 'Finished!'
 
+def singapore
+  address = ['Orchard Road Singapore', 'Bishan Singapore', 'Paya Lebar Singapore', 'Jurong Bird Park Singapore', 'Marina Bay Sands Singapore']
+  post = Post.all.sample
+  post.address = address.sample
+  post.save
+end
