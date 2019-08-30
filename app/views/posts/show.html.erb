@@ -1,12 +1,12 @@
 <body class="h-100">
-  <div class="container justify-content-center w-100 mt-5">
+  <div class="container justify-content-center w-100 mt-5" id="show-content">
     <div class="row">
-      <div class="col-4">
-        <img src=" <%= " #{@post.photo}" %> "alt="Smiley face" class ="book-img" style ="border-radius: 10px ;object-fit: cover;">
+      <div class="col-6">
+        <img src=" <%= " #{@post.photo}" %> "alt="magic item" class ="book-img" style ="border-radius: 10px ;object-fit: cover;">
       </div>
-      <div class="col-4">
+      <div class="col-4 ml-5 pl-5">
         <div class="text-details">
-          <h3 class="text-center">
+          <h3 >
             <%= "#{@post.title}" %>
           </h3>
           <h6>Category :
@@ -25,17 +25,26 @@
           <%= link_to favourite_text, favourites_update_path(post: @post) , id: "favourite_link", class: "btn btn-outline-dark btn-block btn-sm" ,remote: true %>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 mt-4">
         <div class="text-reviews">
-          <h5>Reviews</h5>
+          <h3>Reviews</h3>
           <h6>
             <% @post.reviews.each do |review| %>
             <p>
-              <%= review.content %>
-            </p>
-            <p>
-              -
-              <%= review.user.name %>
+              <div class="notification">
+                <%= image_tag "Minerva.jpg", class: "avatar-large" %>
+
+                <div class="notification-content">
+                  <p><%= review.content %></p>
+                  <p><%= review.user.name %></p>
+
+                </div>
+
+                <div class="notification-actions">
+                  <a href="#">Edit <i class="fas fa-pencil-alt"></i></a>
+                  <a href="#">Delete <i class="far fa-trash-alt"></i></a>
+                </div>
+              </div>
             </p>
             <% end %>
           </h6>

@@ -4,8 +4,10 @@
 }
 
 .book-img {
-  width: 229px;
-  height: 286px;
+  border-radius: 10px;
+  object-fit: cover;
+  width: auto;
+
 }
 
 .book {
