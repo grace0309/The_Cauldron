@@ -1,14 +1,14 @@
 <h1 class="text-center">
   <%= "Welcome, #{@user.name}!"%>
 </h1>
-<div class='container dashboard'>
+<div class="container dashboard" id ="dashboard">
   <div class="row">
     <div class="col-4">
       <h2>Current Bookings</h2>
       <% @bookings.each do |booking| %>
       <% if booking.active == true %>
-      <li class='dashboard-list'>
-        <%= link_to booking.post.title, booking_path(booking) %>
+        <li class="dashboard-list">
+          <%= link_to booking.post.title, booking_path(booking) %>
         <div>
           <% if booking.review == nil %>
           <%= link_to new_booking_review_path(booking) do %>
@@ -28,7 +28,7 @@
           <i class="far fa-trash-alt"></i>
           <% end %>
         </div>
-      </li>
+        </li>
       <% end %>
       <% end %>
     </div>
@@ -37,7 +37,7 @@
       <% @posts.each do |post|  %>
       <li class='dashboard-list'>
         <%= link_to post.title, post_path(post) %>
-        <div class>
+        <div>
           <%= link_to edit_post_path(post) do %>
           <i class="far fa-edit"></i>
           <% end %>
@@ -49,7 +49,6 @@
         </div>
       </li>
         <% post.bookings.each do |book| %>
-      <div class="d-flex">
         <% if book.active == true %>
           <%=simple_form_for [book] do |f| %>
           <div class="form-inputs sm-3">
@@ -59,27 +58,26 @@
             <i class="far fa-check-square"></i>
           </button>
           <% end %>
-          <div >
+          <div>
           <%= book.start_date.strftime(" %d %b %Y")%> -
           <%= book.end_date.strftime(" %d %b %Y")%>
           by
           <%= book.user.name%>
           </div>
-          </div>
           <% end %>
           <% end %>
       <% end %>
     </div>
-      <div class="col-4">
-        <h2>Your Favourites</h2>
+    <div class="col-4">
+      <h2>Your Favourites</h2>
         <% current_user.favourites.each do |favourite| %>
         <li class='dashboard-list'>
           <%= link_to favourite.post.title, post_path(favourite.post)%>
           <% end %>
         </li>
-      </div>
+    </div>
   </div>
-  <div class="row mt-3">
+  <div class="row">
     <div class="col-4">
       <h2>Past Bookings</h2>
       <% @bookings.each do |booking| %>
@@ -93,9 +91,8 @@
       <% end %>
     </div>
   </div>
-  </div>
 </div>
-</div>
+
 <p class="alert">
   <%= "You are signed in as #{@user.email}" %>
 </p>
